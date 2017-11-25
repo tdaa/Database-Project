@@ -9,6 +9,8 @@ USE `oficina` ;
 -- -----------------------------------------------------
 -- Table `oficina`.`Funcionario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `oficina`.`Funcionario`;
+
 CREATE TABLE IF NOT EXISTS `oficina`.`Funcionario` (
   `id` INT NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
@@ -22,6 +24,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `oficina`.`Contacto`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `oficina`.`Contacto`;
+
 CREATE TABLE IF NOT EXISTS `oficina`.`Contacto` (
   `Numero` VARCHAR(45) NOT NULL,
   `idFuncionario` INT NOT NULL,
@@ -38,11 +42,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `oficina`.`Veiculo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `oficina`.`Veiculo`;
+
 CREATE TABLE IF NOT EXISTS `oficina`.`Veiculo` (
   `id` INT NOT NULL,
   `Marca` VARCHAR(45) NOT NULL,
   `Modelo` VARCHAR(45) NOT NULL,
-  `Matrícula` VARCHAR(45) NOT NULL,
+  `Matricula` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -50,11 +56,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `oficina`.`Serviço`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `oficina`.`Serviço`;
+
 CREATE TABLE IF NOT EXISTS `oficina`.`Serviço` (
   `id` INT NOT NULL,
   `Data` DATETIME NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
-  `Notas` VARCHAR(45) NULL,
+  `Notas` VARCHAR(100) NULL,
   `idVeiculo` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Serviço_Veiculo1_idx` (`idVeiculo` ASC),
@@ -69,6 +77,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `oficina`.`ServiçoFuncionario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `oficina`.`ServiçoFuncionario`;
+
 CREATE TABLE IF NOT EXISTS `oficina`.`ServiçoFuncionario` (
   `idServiço` INT NOT NULL,
   `idFuncionario` INT NOT NULL,
@@ -91,10 +101,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `oficina`.`Peça`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `oficina`.`Peça`;
+
 CREATE TABLE IF NOT EXISTS `oficina`.`Peça` (
   `id` INT NOT NULL,
   `Estado` VARCHAR(45) NOT NULL,
-  `Modelo` VARCHAR(45) NOT NULL,
+  `Modelo` VARCHAR(100) NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
   `idServiço` INT NOT NULL,
   PRIMARY KEY (`id`),

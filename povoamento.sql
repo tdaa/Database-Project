@@ -12,7 +12,7 @@
 -- ------------------------------------------------------
 
 -- Esquema: "Oficina"
-USE `Oficina` ;
+USE `oficina` ;
 
 --
 -- Permissão para fazer operações de remoção de dados.
@@ -125,7 +125,7 @@ INSERT INTO  Veiculo
         
 --        
 -- Povoamento da tabela "Serviço"
-INSERT INTO Servico
+INSERT INTO Serviço
 	(id, Data, Tipo, Notas, idVeiculo)
     VALUES	
 		(1,  '2017-09-11', 'Mudança de oleo', NULL, 1),
@@ -194,9 +194,9 @@ INSERT INTO Servico
 -- SELECT * FROM Servico;
 
 --      
--- Povoamento da tabela "Servico_Funcionario"      
-INSERT INTO ServicoFuncionario
-	(idServico, idFuncionario)
+-- Povoamento da tabela "ServiçoFuncionario"      
+INSERT INTO ServiçoFuncionario
+	(idServiço, idFuncionario)
 	VALUES
 		(1, 3),
         (2, 1),
@@ -257,16 +257,8 @@ INSERT INTO ServicoFuncionario
         (57, 8),
         (58, 9),
         (59, 10),
-        (60, 11)
-        ;
---
--- DELETE FROM ServicoFuncionario;
--- SELECT * FROM ServicoFuncionario;	
-
-INSERT INTO ServicoFuncionario
-	(idServico, idFuncionario)
-	VALUES
-		(2, 13),
+        (60, 11),
+        (2, 13),
         (7, 11),
         (22, 8),
         (33, 9),
@@ -278,11 +270,14 @@ INSERT INTO ServicoFuncionario
         (59, 4),
         (60, 10)
         ;
+--
+-- DELETE FROM ServiçoFuncionario;
+-- SELECT * FROM ServiçoFuncionario;	
 
 --        
--- Povoamento da tabela "Peças"
-INSERT INTO Peças
-	(id, Estado, Modelo, Nome, idServico)
+-- Povoamento da tabela "Peça"
+INSERT INTO Peça
+	(id, Estado, Modelo, Nome, idServiço)
     VALUES
 		(1, 'novo', 'tamanho 17 Michelin esquerdo traseiro', 'Pneu', 9),
         (2, 'novo', 'tamanho 17 Michelin direito traseiro', 'Pneu', 9),
@@ -340,8 +335,8 @@ INSERT INTO Peças
         (54, 'novo', 'Mala para BMW 530', 'Porta-Malas', 60)
         ;
 --
--- DELETE FROM Peças;
--- SELECT * FROM Peças;
+-- DELETE FROM Peça;
+-- SELECT * FROM Peça;
         
 	        
 -- ------------------------------------------------------
