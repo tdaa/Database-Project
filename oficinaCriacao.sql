@@ -2,14 +2,11 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `mydb` ;
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Funcionario`
+-- Table `oficina`.`Funcionario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Funcionario` (
+CREATE TABLE IF NOT EXISTS `oficina`.`Funcionario` (
   `id` INT NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
   `DataNascimento` DATETIME NOT NULL,
@@ -20,25 +17,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Contacto`
+-- Table `oficina`.`Contacto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Contacto` (
+CREATE TABLE IF NOT EXISTS `oficina`.`Contacto` (
   `Numero` VARCHAR(45) NOT NULL,
   `idFuncionario` INT NOT NULL,
   INDEX `fk_Contacto_Funcionario_idx` (`idFuncionario` ASC),
   PRIMARY KEY (`Numero`, `idFuncionario`),
   CONSTRAINT `fk_Contacto_Funcionario`
     FOREIGN KEY (`idFuncionario`)
-    REFERENCES `mydb`.`Funcionario` (`id`)
+    REFERENCES `oficina`.`Funcionario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Veiculo`
+-- Table `oficina`.`Veiculo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Veiculo` (
+CREATE TABLE IF NOT EXISTS `oficina`.`Veiculo` (
   `id` INT NOT NULL,
   `Marca` VARCHAR(45) NOT NULL,
   `Modelo` VARCHAR(45) NOT NULL,
@@ -48,9 +45,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Serviço`
+-- Table `oficina`.`Serviço`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Serviço` (
+CREATE TABLE IF NOT EXISTS `oficina`.`Serviço` (
   `id` INT NOT NULL,
   `Data` DATETIME NOT NULL,
   `Tipo` VARCHAR(45) NOT NULL,
@@ -60,16 +57,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Serviço` (
   INDEX `fk_Serviço_Veiculo1_idx` (`idVeiculo` ASC),
   CONSTRAINT `fk_Serviço_Veiculo1`
     FOREIGN KEY (`idVeiculo`)
-    REFERENCES `mydb`.`Veiculo` (`id`)
+    REFERENCES `oficina`.`Veiculo` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`ServiçoFuncionario`
+-- Table `oficina`.`ServiçoFuncionario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`ServiçoFuncionario` (
+CREATE TABLE IF NOT EXISTS `oficina`.`ServiçoFuncionario` (
   `idServiço` INT NOT NULL,
   `idFuncionario` INT NOT NULL,
   INDEX `fk_Serviço_has_Funcionario_Funcionario1_idx` (`idFuncionario` ASC),
@@ -77,21 +74,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`ServiçoFuncionario` (
   PRIMARY KEY (`idServiço`, `idFuncionario`),
   CONSTRAINT `fk_Serviço_has_Funcionario_Serviço1`
     FOREIGN KEY (`idServiço`)
-    REFERENCES `mydb`.`Serviço` (`id`)
+    REFERENCES `oficina`.`Serviço` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Serviço_has_Funcionario_Funcionario1`
     FOREIGN KEY (`idFuncionario`)
-    REFERENCES `mydb`.`Funcionario` (`id`)
+    REFERENCES `oficina`.`Funcionario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Peça`
+-- Table `oficina`.`Peça`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Peça` (
+CREATE TABLE IF NOT EXISTS `oficina`.`Peça` (
   `id` INT NOT NULL,
   `Estado` VARCHAR(45) NOT NULL,
   `Modelo` VARCHAR(45) NOT NULL,
@@ -101,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Peça` (
   INDEX `fk_Peças_Serviço1_idx` (`idServiço` ASC),
   CONSTRAINT `fk_Peças_Serviço1`
     FOREIGN KEY (`idServiço`)
-    REFERENCES `mydb`.`Serviço` (`id`)
+    REFERENCES `oficina`.`Serviço` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
