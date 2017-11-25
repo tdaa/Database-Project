@@ -8,6 +8,8 @@ USE `Oficina` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`Funcionario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Oficina`,`Funcionario`;
+
 CREATE TABLE IF NOT EXISTS `Oficina`.`Funcionario` (
   `id` INT NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
@@ -21,6 +23,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Contacto`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Oficina`,`Contacto`;
+
 CREATE TABLE IF NOT EXISTS `Oficina`.`Contacto` (
   `Numero` VARCHAR(45) NOT NULL,
   `idFuncionario` INT NOT NULL,
@@ -37,6 +41,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Veiculo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Oficina`,`Veiculo`;
+
 CREATE TABLE IF NOT EXISTS `Oficina`.`Veiculo` (
   `id` INT NOT NULL,
   `Marca` VARCHAR(45) NOT NULL,
@@ -46,10 +52,12 @@ CREATE TABLE IF NOT EXISTS `Oficina`.`Veiculo` (
 ENGINE = InnoDB;
 
 
-DROP TABLE IF EXISTS `Servico`;
+
 -- -----------------------------------------------------
 -- Table `mydb`.`Serviço`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Oficina`,`Servico`;
+
 CREATE TABLE IF NOT EXISTS `Oficina`.`Servico` (
   `id` INT NOT NULL,
   `Data` DATETIME NOT NULL,
@@ -69,6 +77,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Serviço_Funcionario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Oficina`,`ServicoFuncionario`;
+
 CREATE TABLE IF NOT EXISTS `Oficina`.`ServicoFuncionario` (
   `idServico` INT NOT NULL,
   `idFuncionario` INT NOT NULL,
@@ -91,6 +101,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`Peças`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `Oficina`,`Peças`;
+
 CREATE TABLE IF NOT EXISTS `Oficina`.`Peças` (
   `id` INT NOT NULL,
   `Estado` VARCHAR(45) NOT NULL,
@@ -110,3 +122,4 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
