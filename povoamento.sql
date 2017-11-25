@@ -257,7 +257,7 @@ INSERT INTO ServicoFuncionario
         (57, 8),
         (58, 9),
         (59, 10),
-        (60, 11),
+        (60, 11)
         ;
 --
 -- DELETE FROM ServicoFuncionario;
