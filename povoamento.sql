@@ -19,7 +19,7 @@ USE `Oficina` ;
 SET SQL_SAFE_UPDATES = 0;
 
 --
--- povoamento da tabela "Funcionario"id
+-- povoamento da tabela "Funcionario"
 INSERT INTO Funcionario 
 	(id, Nome, DataNascimento, Morada, Email) 
 	VALUES 
@@ -124,7 +124,7 @@ INSERT INTO  Veiculo
 -- SELECT * FROM Veiculo;        
         
 --        
--- Povoamento da tabela "Servico"
+-- Povoamento da tabela "Serviço"
 INSERT INTO Servico
 	(id, Data, Tipo, Notas, idVeiculo)
     VALUES	
@@ -257,12 +257,28 @@ INSERT INTO ServicoFuncionario
         (57, 8),
         (58, 9),
         (59, 10),
-        (60, 11)
+        (60, 11),
         ;
 --
--- DELETE FROM Servico_Funcionario;
--- SELECT * FROM Servico_Funcionario;		
-        
+-- DELETE FROM ServicoFuncionario;
+-- SELECT * FROM ServicoFuncionario;	
+
+INSERT INTO ServicoFuncionario
+	(idServico, idFuncionario)
+	VALUES
+		(2, 13),
+        (7, 11),
+        (22, 8),
+        (33, 9),
+        (40, 1),
+        (45, 15),
+        (54, 2),
+        (55, 8),
+        (57, 2),
+        (59, 4),
+        (60, 10)
+        ;
+
 --        
 -- Povoamento da tabela "Peças"
 INSERT INTO Peças
@@ -324,8 +340,8 @@ INSERT INTO Peças
         (54, 'novo', 'Mala para BMW 530', 'Porta-Malas', 60)
         ;
 --
--- DELETE FROM Pecas;
--- SELECT * FROM Pecas;
+-- DELETE FROM Peças;
+-- SELECT * FROM Peças;
         
 	        
 -- ------------------------------------------------------
