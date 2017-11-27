@@ -24,11 +24,11 @@ BEGIN
 		ON SF.idServiço = S.id
 		INNER JOIN Funcionario as F
 		ON F.id = SF.idFuncionario
-		where F.id = id 
+		where F.id = idF
 
 
-SET @id = '2';
-CALL serviçosFuncionario(@id);
+SET @idF = '2';
+CALL serviçosFuncionario(@idF);
 
 DROP PROCEDURE serviçosFuncionario;
 
@@ -68,8 +68,10 @@ CALL serviçoCarro(@idC,@idS);
 DROP PROCEDURE serviçoCarro;
 
 DELIMITER $$
-CREATE PROCEDURE criaServiço ()
+CREATE PROCEDURE criaServiço (IN idV INT, IN Notas VARCHAR(100), IN Tipo VARCHAR(45))
 BEGIN
+	SET ifF
+
 
 CALL criaServiço();
 
@@ -85,7 +87,7 @@ BEGIN
 					ON SF.idFuncionario = idF
 					WHERE S.idVeiculo = idV);
 
-SET @DataF = '20-01-2017'
+SET @DataF = '2017-01-20'
 SET @idF = '2'
 SET @idV = '5'
 
@@ -93,6 +95,41 @@ CALL terminaServiço(@DataF,@idF,@idV)
 
 DROP PROCEDURE terminaServiço;
 
+
+DELIMITER $$
+CREATE PROCEDURE adicionaVeiculo (IN ModeloV VARCHAR(45), IN MarcaV VARCHAR(45), IN MatrículaV VARCHAR(45), in NotasS VARCHAR(100), IN TipoS VARCHAR(45))
+BEGIN
+	DECLARE idF INT;
+	DECLARE idV INT;
+	SET idV = (Select (max(ID) +1) From Veículo)
+	INSERT INTO Veículo
+		(id,Marca,Modelo,Matrícula)
+		VALUES
+		(idV,MarcaV,ModeloV,MatrículaV)
+	SET idF = (Select F.id from Funcionario as F
+				INNER JOIN serviçosFuncionario as SF
+				ON SF.idFuncionario=F.id
+				INNER JOIN Serviço as S
+				ON S.id = SF.idServiço
+				Where S.Tipo=TipoS
+				)
+	IF (idF IS NULL)
+		Set IDF =  (Select F.id from Funcionario as F
+				INNER JOIN serviçosFuncionario as SF
+				ON SF.idFuncionario=F.id
+				Where min(count(Sf.idFuncionario))
+				)
+	IF (idF Is NULL)
+
+SET @ModeloV = 'Classe A'
+SET @MarcaV = 'Mercedes-Benz'
+SET @MatrículaV = '20-EF-21'
+SET @NotasS = NULL
+SET @TipoS = 'Mudança de oleo'
+
+CALL adicionaVeiculo(@ModeloV,@MarcaV,@MatrículaV,)
+
+DROP PROCEDURE adicionaVeiculo;
 
 
 
