@@ -8,7 +8,8 @@ BEGIN
 		INNER JOIN Serviço as S
 		ON S.id = P.idServiço
 		INNER JOIN Veículo as V
-		ON V.id = S.idVeiculo
+		ON V.id = S.idVeiculo;
+END$$
 
 CALL peçasServiços();
 
@@ -24,8 +25,9 @@ BEGIN
 		ON SF.idServiço = S.id
 		INNER JOIN Funcionario as F
 		ON F.id = SF.idFuncionario
-		where F.id = idF
+		where F.id = idF;
 
+END$$
 
 SET @idF = '2';
 CALL serviçosFuncionario(@idF);
@@ -38,8 +40,9 @@ DELIMITER $$
 CREATE PROCEDURE serviçosData (IN dataI DATE, IN dataF DATE)
 BEGIN
 	SELECT * from Serviço as S
-		Where S.Data in (dataI,dataF)
+		Where S.Data in (dataI,dataF);
 
+END$$
 
 SET @dataI = '2-01-2017';
 SET @dataF = '3-01-2017';
@@ -58,24 +61,16 @@ BEGIN
 	ON S.id = SF.idServiço
 	INNER JOIN Veículo as V
 	ON V.id = S.idVeiculo
-	WHERE S.idVeiculo = idC and S.Tipo = idS
+	WHERE S.idVeiculo = idC and S.Tipo = idS;
 
+END$$
 
 SET @idC = '2';
-SET @idS = '3'
+SET @idS = '3';
 CALL serviçoCarro(@idC,@idS);
 
 DROP PROCEDURE serviçoCarro;
 
-DELIMITER $$
-CREATE PROCEDURE criaServiço (IN idV INT, IN Notas VARCHAR(100), IN Tipo VARCHAR(45))
-BEGIN
-	SET ifF
-
-
-CALL criaServiço();
-
-DROP PROCEDURE criaServiço;
 
 DELIMITER $$
 CREATE PROCEDURE terminaServiço (IN DataF DATE, IN idF INT, IN idV INT)
@@ -87,6 +82,8 @@ BEGIN
 					ON SF.idFuncionario = idF
 					WHERE S.idVeiculo = idV);
 
+END$$
+
 SET @DataF = '2017-01-20'
 SET @idF = '2'
 SET @idV = '5'
@@ -97,39 +94,118 @@ DROP PROCEDURE terminaServiço;
 
 
 DELIMITER $$
-CREATE PROCEDURE adicionaVeiculo (IN ModeloV VARCHAR(45), IN MarcaV VARCHAR(45), IN MatrículaV VARCHAR(45), in NotasS VARCHAR(100), IN TipoS VARCHAR(45))
+CREATE PROCEDURE novo_Serviço_Com_Veiculo_Novo (IN ModeloV VARCHAR(45), IN MarcaV VARCHAR(45), IN MatriculaV VARCHAR(45), IN dataS DATETIME , IN NotasS VARCHAR(100), IN TipoS VARCHAR(45), IN idF INT)
 BEGIN
-	DECLARE idF INT;
 	DECLARE idV INT;
-	SET idV = (Select (max(ID) +1) From Veículo)
-	INSERT INTO Veículo
-		(id,Marca,Modelo,Matrícula)
-		VALUES
-		(idV,MarcaV,ModeloV,MatrículaV)
-	SET idF = (Select F.id from Funcionario as F
-				INNER JOIN serviçosFuncionario as SF
-				ON SF.idFuncionario=F.id
-				INNER JOIN Serviço as S
-				ON S.id = SF.idServiço
-				Where S.Tipo=TipoS
-				)
-	IF (idF IS NULL)
-		Set IDF =  (Select F.id from Funcionario as F
-				INNER JOIN serviçosFuncionario as SF
-				ON SF.idFuncionario=F.id
-				Where min(count(Sf.idFuncionario))
-				)
-	IF (idF Is NULL)
+    DECLARE idS INT;
+    DECLARE erro INT;
+    DECLARE sucesso INT;
+    DECLARE numeroServiços INT;
+    START TRANSACTION;
+    
+       SET autocommit = 0;
+    
+		SET idV = (Select (max(ID) +1) From Veiculo);
+        SET idS = (Select (max(ID) +1) From Serviço);
+        
+		INSERT INTO Veiculo
+			(id,Marca,Modelo,Matricula)
+			VALUES
+				(idV,MarcaV,ModeloV,MatriculaV);
+		
+        SET erro = @@error_count;
+        IF(erro <> 0) THEN SET sucesso = 0;
+        END IF;
+        
+        INSERT INTO Serviço
+			(id, Data, Tipo, Notas, idVeiculo)
+				VALUES
+					(idS, dataS, TipoS, NotasS, idV);
+                    
+		SET erro = @@error_count;
+		IF(erro <> 0) THEN SET sucesso = 0;
+        END IF;
+        
+        INSERT INTO ServiçoFuncionario
+			(idServiço, idFuncionario)
+            VALUES
+				(idS, idF);
+                
+		SET erro = @@error_count;
+		IF(erro <> 0) THEN SET sucesso = 0;
+        END IF;
+        
+        IF(sucesso = 0) 
+			THEN ROLLBACK;
+			ELSE COMMIT;
+		END IF;
+                    
+END $$
 
-SET @ModeloV = 'Classe A'
-SET @MarcaV = 'Mercedes-Benz'
-SET @MatrículaV = '20-EF-21'
-SET @NotasS = NULL
-SET @TipoS = 'Mudança de oleo'
+SET @ModeloV = 'Classe A';
+SET @MarcaV = 'Mercedes-Benz';
+SET @MatriculaV = 'AHFKSPEL';
+SET @NotasS = NULL;
+SET @dataS = CURDATE();
+SET @TipoS = 'Mudança de oleo';
 
-CALL adicionaVeiculo(@ModeloV,@MarcaV,@MatrículaV,)
 
-DROP PROCEDURE adicionaVeiculo;
+CALL novo_Serviço_Com_Veiculo_Novo (@ModeloV,@MarcaV,@MatriculaV, @dataS, @NotasS, @TipoS);
 
+DROP PROCEDURE novo_Serviço_Com_Veiculo_Novo;
+
+DELIMITER $$
+CREATE PROCEDURE novo_Serviço_Com_Veiculo_Existente (IN MatriculaV VARCHAR(45), IN dataS DATETIME , IN NotasS VARCHAR(100), IN TipoS VARCHAR(45), IN idF INT)
+BEGIN
+	DECLARE idV INT;
+    DECLARE idS INT;
+    DECLARE erro INT;
+    DECLARE sucesso INT;
+    DECLARE numeroServiços INT;
+    START TRANSACTION;
+    
+       SET autocommit = 0;
+    
+		SET idV = (SELECT V.id FROM Veiculo AS V
+							WHERE V.Matricula = MatriculaV);
+                            
+        SET idS = (Select (max(ID) +1) From Serviço);
+		
+        SET erro = @@error_count;
+        IF(erro <> 0) THEN SET sucesso = 0;
+        END IF;
+
+        
+        INSERT INTO Serviço
+			(id, Data, Tipo, Notas, idVeiculo)
+				VALUES
+					(idS, dataS, TipoS, NotasS, idV);
+                    
+		SET erro = @@error_count;
+		IF(erro <> 0) THEN SET sucesso = 0;
+        END IF;
+        
+        INSERT INTO ServiçoFuncionario
+			(idServiço, idFuncionario)
+            VALUES
+				(idS, idF);
+                
+		SET erro = @@error_count;
+		IF(erro <> 0) THEN SET sucesso = 0;
+        END IF;
+        
+        IF(sucesso = 0) 
+			THEN ROLLBACK;
+			ELSE COMMIT;
+		END IF;
+                    
+END $$
+
+SET @dataS = CURDATE();
+SET @TipoS = 'Substituiçao de corrente';
+SET @NotasS = 'corrente a fazer barulho';
+SET @MatriculaV = 'H4TM1AK3';
+
+CALL novo_Serviço_Com_Veiculo_Existente (@MatriculaV, @dataS, @NotasS, @TipoS);
 
 
