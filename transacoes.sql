@@ -39,13 +39,13 @@ DROP PROCEDURE serviçosFuncionario;
 DELIMITER $$
 CREATE PROCEDURE serviçosData (IN dataI DATE, IN dataF DATE)
 BEGIN
-	SELECT * from Serviço as S
-		Where S.Data in (dataI,dataF);
+	SELECT * FROM Serviço AS S
+		WHERE S.Data BETWEEN dataI AND dataF;
 
 END$$
 
-SET @dataI = '2-01-2017';
-SET @dataF = '3-01-2017';
+SET @dataI = '2017-09-22';
+SET @dataF = '2017-11-06';
 CALL serviçosData(@dataI,@dataF);
 
 DROP PROCEDURE serviçosData;

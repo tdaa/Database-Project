@@ -24,4 +24,3 @@ GRANT INSERT ON Funcionario TO 'funcionario@email';
 GRANT SELECT ON oficina.Peça TO 'gestor'@'localhost';
 GRANT SELECT, INSERT ON oficina.Contacto TO 'gestor'@'localhost';
 GRANT SELECT ON oficina.Veiculo TO 'gestor'@'localhost';
-

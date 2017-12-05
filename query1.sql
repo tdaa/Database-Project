@@ -9,7 +9,6 @@ USE Oficina;
 					ON V.id = S.idVeiculo
 						WHERE V.Matricula = 'SHH8039K';
                         
-                        
 
 				
                         
