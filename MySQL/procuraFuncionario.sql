@@ -17,11 +17,5 @@ BEGIN
                         
 END $$                        
 
-CALL procuraQualFuncionario('CYEA2I65', 'Limpeza dos filtors do ar');
-				
-                        
-
-	
-
-						
+CALL procuraQualFuncionario('CYEA2I65', 'Limpeza dos filtros do ar');
 	
