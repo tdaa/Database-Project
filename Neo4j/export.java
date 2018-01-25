@@ -14,7 +14,7 @@ public class export {
             e.printStackTrace();
         }
 
-    String filename = "funcionarios.csv";
+    String filename = "/Users/Tiago/Library/Application Support/Neo4j Desktop/Application/neo4jDatabases/database-1a1362b1-2def-4cd9-be98-222039f95259/installation-3.3.1/import/funcionarios.csv";
     try {
       String URL = "localhost";
       String SCHEMA = "oficina";
@@ -44,7 +44,7 @@ public class export {
       System.out.println("CSV File is created successfully.");
 
 
-      filename = "serviços.csv";
+      filename = "/Users/Tiago/Library/Application Support/Neo4j Desktop/Application/neo4jDatabases/database-1a1362b1-2def-4cd9-be98-222039f95259/installation-3.3.1/import/serviços.csv";
       fw = new FileWriter(filename);
       query = "select * from Serviço";
       stmt = conn.createStatement();
@@ -73,7 +73,7 @@ public class export {
       fw.close();
       System.out.println("CSV File is created successfully.");
 
-      filename="peças.csv";
+      filename="/Users/Tiago/Library/Application Support/Neo4j Desktop/Application/neo4jDatabases/database-1a1362b1-2def-4cd9-be98-222039f95259/installation-3.3.1/import/peças.csv";
       fw = new FileWriter(filename);
       query = "select * from Peça";
       stmt = conn.createStatement();
@@ -96,7 +96,7 @@ public class export {
       fw.close();
       System.out.println("CSV File is created successfully");
 
-      filename = "veiculos.csv";
+      filename = "/Users/Tiago/Library/Application Support/Neo4j Desktop/Application/neo4jDatabases/database-1a1362b1-2def-4cd9-be98-222039f95259/installation-3.3.1/import/veiculos.csv";
       fw = new FileWriter(filename);
       query = "select * from Veiculo";
       stmt = conn.createStatement();
@@ -117,7 +117,7 @@ public class export {
       fw.close();
       System.out.println("CSV File is created successfully");
 
-      filename = "contactos.csv";
+      filename = "/Users/Tiago/Library/Application Support/Neo4j Desktop/Application/neo4jDatabases/database-1a1362b1-2def-4cd9-be98-222039f95259/installation-3.3.1/import/contactos.csv";
       fw = new FileWriter(filename);
       query = "select * from Contacto";
       stmt = conn.createStatement();
@@ -134,7 +134,7 @@ public class export {
       fw.close();
       System.out.println("CSV File is created successfully");
 
-      filename = "sfunc.csv";
+      filename = "/Users/Tiago/Library/Application Support/Neo4j Desktop/Application/neo4jDatabases/database-1a1362b1-2def-4cd9-be98-222039f95259/installation-3.3.1/import/sfunc.csv";
       fw = new FileWriter(filename);
       query = "select * from ServiçoFuncionario";
       stmt = conn.createStatement();
