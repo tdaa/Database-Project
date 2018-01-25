@@ -1,0 +1,55 @@
+id,Estado,Modelo,Nome,idServiço
+1,novo,tamanho 17 Michelin esquerdo traseiro,Pneu,9
+2,novo,tamanho 17 Michelin direito traseiro,Pneu,9
+3,usado,Esquerda GMC Sonoma,Porta,2
+4,novo,Dianteiro direito,Travao,3
+5,novo,Dianteiro esquerdo,Travao,3
+6,usado,Traseiro Mazda B-Series Plus,Vidro,6
+7,novo,Dianteiro Mercury Milan,Para-choques,7
+8,novo,Traseiro Mercury Milan,Para-choques,7
+9,novo,capo Mercury Milan,Capo,7
+10,usado,direçao Mercury Milan,Direcao,7
+11,novo,Lateral Esquerda dianteira Oldsmobile,Porta,10
+12,novo,Lateral Esquerda traseira Oldsmobile,Porta,10
+13,novo,Vela Lotus Esprit,Vela,11
+14,novo,Corrente para Honda Odissey,Corrente,12
+15,novo,Embraiagem BMW 530,Embraiagem,13
+16,novo,Vermelha,Tinta,14
+17,novo,Preta,Tinta,19
+18,novo,Direito traseiro tamanho 18,Pneu,22
+19,novo,Esquerdo traseiro tamanho 18,Pneu,22
+20,novo,Jante Chrysler Concorde,Jante,23
+21,novo,Jante Chrysler Concorde,Jante,23
+22,novo,Jante Chrysler Concorde,Jante,23
+23,novo,Jante Chrysler Concorde,Jante,23
+24,novo,Motor para Buick Special,Motor,24
+25,usado,Direita GMC Sierra,Porta,25
+26,novo,Corrente para Lexus GX,Corrente,27
+27,novo,Embraiagem para Mitsubishi Pajero,Embraiagem,28
+28,novo,Calços para Ford Econoline,Calços,32
+29,novo,Velas para Mercedes 500E,Vela,33
+30,usado,Capo para Mitsubishi Eclipe,Capo,36
+31,usado,Para-choques traseiro para Mitsubishi Eclipse,Para-choques,36
+32,usado,Motor para Mitsubishi Eclipse,Motor,36
+33,usado,Porta Direita Traseira para Mitsubishi Eclipse,Porta,36
+34,usado,Porta Direita Dianteira para Mitsubishi Eclipse,Porta,36
+35,usado,Para-choques dianteiro para Mitsubishi Eclipse,Para-choques,36
+36,usado,Vidros para BMW M,Vidro,38
+37,novo,Travao para roda esquerda dianteira Honda Odyssey,Travao,39
+38,novo,Travao para roda direita dianteira Honda Odyssey,Travao,39
+39,novo,Embraiagem para Hyundai Elantra,Embraiagem,40
+40,novo,Rolamento para roda traseira esquerda,Rolamento,41
+41,novo,Jantes tamanho 18,Jante,42
+42,novo,Motor 3000cc para Volkswagen Scirocco,Motor,44
+43,usado,Vidro lateral direito traseiro,Vidro,45
+44,novo,Calços para GMC Sonoma,Calços,46
+45,novo,Branca,Tinta,47
+46,usado,Tamanho 17 Michelin,Pneu,48
+47,novo,Velas para motor de um Buick Regal,Vela,49
+48,novo,Tamanho 15 Continental,Pneu,50
+49,novo,para-choques dianteiro para Mitsubishi Pajero,Para-choques,56
+50,novo,Jante tamanho 19,Jante,59
+51,novo,motor 3000cc para BMW 530,Motor,60
+52,novo,Eixo traseiro para BMW 530,Eixo,60
+53,novo,Para-choques para BMW 530,Para-choques,60
+54,novo,Mala para BMW 530,Porta-Malas,60
